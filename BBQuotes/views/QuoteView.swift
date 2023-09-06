@@ -11,6 +11,7 @@ struct QuoteView: View {
     
     @StateObject private var viewModel = ViewModel(controller: FetchController())
     let show: String
+    @State private var showDetails: Bool = false
     
     var body: some View {
         GeometryReader {geo in
@@ -44,6 +45,12 @@ struct QuoteView: View {
                                     ProgressView()
                                 }
                                 .frame(width: geo.size.width/1.1, height: geo.size.height/1.8)
+                                .onTapGesture {
+                                    showDetails.toggle()
+                                }
+                                .sheet(isPresented: $showDetails, content: {
+                                    CharacterView(show: show, character: data.character)
+                                })
                                 
                                 
                                 Text(data.character.name)
