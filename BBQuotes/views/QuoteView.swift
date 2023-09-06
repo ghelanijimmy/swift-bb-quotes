@@ -8,43 +8,63 @@
 import SwiftUI
 
 struct QuoteView: View {
+    
+    @StateObject private var viewModel = ViewModel(controller: FetchController())
+    let show: String
+    
     var body: some View {
         GeometryReader {geo in
             ZStack {
-                Image(.breakingbad)
+                Image(show.lowercased().filter {$0 != " "})
                     .resizable()
                     .frame(width: geo.size.width * 2.7, height: geo.size.height * 1.2)
                 
                 VStack {
                     Spacer(minLength: 140)
                     
-                    Text("\"You either run from things, or you face them, Mr. White.\"")
-                        .multilineTextAlignment(.center)
-                        .foregroundStyle(.white)
-                        .padding()
-                        .background(.black.opacity(0.5))
-                        .clipShape(RoundedRectangle(cornerRadius: 25))
-                        .padding(.horizontal)
-                        .minimumScaleFactor(0.5)
-                    
-                    ZStack(alignment: .bottom) {
-                        Image(.jessepinkman)
-                            .resizable()
-                            .scaledToFill()
-                        
-                        Text("Jesse Pinkman")
+                    switch viewModel.status {
+                    case .success(let data):
+                        Text("\"\(data.quote.quote) \"")
+                            .multilineTextAlignment(.center)
                             .foregroundStyle(.white)
-                            .padding(10)
-                            .frame(maxWidth: .infinity)
-                            .background(.ultraThinMaterial.opacity(0.75))
+                            .padding()
+                            .background(.black.opacity(0.5))
+                            .clipShape(RoundedRectangle(cornerRadius: 25))
+                            .padding(.horizontal)
+                            .minimumScaleFactor(0.5)
+                        
+                        ZStack(alignment: .bottom) {
+                            
+                            AsyncImage(url: data.character.images[0]) { image in
+                                image
+                                    .resizable()
+                                    .scaledToFill()
+                            } placeholder: {
+                                ProgressView()
+                            }
+                            .frame(width: geo.size.width/1.1, height: geo.size.height/1.8)
+
+                            
+                            Text(data.character.name)
+                                .foregroundStyle(.white)
+                                .padding(10)
+                                .frame(maxWidth: .infinity)
+                                .background(.ultraThinMaterial.opacity(0.75))
+                        }
+                        .frame(width: geo.size.width / 1.1, height: geo.size.height / 1.8)
+                        .clipShape(RoundedRectangle(cornerRadius: 80))
+                        
+                    case .fetching:
+                        ProgressView()
+                    default:
+                        EmptyView()
                     }
-                    .frame(width: geo.size.width / 1.1, height: geo.size.height / 1.8)
-                    .clipShape(RoundedRectangle(cornerRadius: 80))
-                    
                     Spacer()
                     
                     Button {
-                        //
+                        Task {
+                            await viewModel.getData(for: show)
+                        }
                     } label:{
                         Text("Get Random Quote")
                             .font(.title)
@@ -66,6 +86,6 @@ struct QuoteView: View {
 }
 
 #Preview {
-    QuoteView()
+    QuoteView(show: "Better Call Saul")
         .preferredColorScheme(.dark)
 }

@@ -13,5 +13,5 @@ struct Character: Decodable {
     let occupations: [String]
     let images: [URL]
     let aliases: [String]
-    let portrayedBy: [String]
+    let portrayedBy: String
 }
