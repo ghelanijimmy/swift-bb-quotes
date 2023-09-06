@@ -18,6 +18,7 @@
 		96304E692AA8D6A700FDFEFA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96304E682AA8D6A700FDFEFA /* Constants.swift */; };
 		96304E6C2AA8D91C00FDFEFA /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96304E6B2AA8D91C00FDFEFA /* ViewModel.swift */; };
 		96304E6E2AA8FD0C00FDFEFA /* QuoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96304E6D2AA8FD0C00FDFEFA /* QuoteView.swift */; };
+		96304E702AA90EE700FDFEFA /* CharacterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96304E6F2AA90EE700FDFEFA /* CharacterView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		96304E682AA8D6A700FDFEFA /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		96304E6B2AA8D91C00FDFEFA /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		96304E6D2AA8FD0C00FDFEFA /* QuoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteView.swift; sourceTree = "<group>"; };
+		96304E6F2AA90EE700FDFEFA /* CharacterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 			children = (
 				96304E512AA8AF9A00FDFEFA /* ContentView.swift */,
 				96304E6D2AA8FD0C00FDFEFA /* QuoteView.swift */,
+				96304E6F2AA90EE700FDFEFA /* CharacterView.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -197,6 +200,7 @@
 				96304E6E2AA8FD0C00FDFEFA /* QuoteView.swift in Sources */,
 				96304E672AA8D19500FDFEFA /* FetchController.swift in Sources */,
 				96304E502AA8AF9A00FDFEFA /* BBQuotesApp.swift in Sources */,
+				96304E702AA90EE700FDFEFA /* CharacterView.swift in Sources */,
 				96304E692AA8D6A700FDFEFA /* Constants.swift in Sources */,
 				96304E6C2AA8D91C00FDFEFA /* ViewModel.swift in Sources */,
 			);
